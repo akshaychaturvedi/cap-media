@@ -1,0 +1,118 @@
+<mvc:View
+    controllerName="project.controller.App"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:layout="sap.ui.layout"
+    xmlns:u="sap.ui.unified"
+    xmlns:f="sap.f"
+>
+    <App id="app">
+        <!-- <Page
+            id="page"
+            title="Demo"
+            class="viewPadding"
+        >
+            <l:VerticalLayout id="vlayout">
+                <u:FileUploader
+                    id="fileUploader"
+                    name="myFileUpload"
+                    uploadUrl="upload/"
+                    tooltip="Upload your file to the local server"
+                    uploadComplete="handleUploadComplete"
+                />
+                <Button id="upload"
+                    text="Upload File"
+                    press="handleUploadPress"
+                />
+            </l:VerticalLayout>
+        </Page> -->
+        <f:DynamicPage
+            id="mainPage"
+            headerExpanded="true"
+            toggleHeaderOnTitleClick="true"
+        >
+            <!-- DynamicPage Title -->
+            <f:title>
+                <f:DynamicPageTitle id="pageTitle">
+                    <f:heading>
+                        <Title
+                            id="headerTitle"
+                            text="{i18n>appTitle}"
+                        />
+                    </f:heading>
+                </f:DynamicPageTitle>
+            </f:title>
+
+            <!-- DynamicPage Header -->
+            <f:header>
+                <f:DynamicPageHeader id="pageHeader">
+                    <layout:HorizontalLayout
+                        id="headerLayout"
+                        class="sapUiResponsiveContentPadding"
+                    >
+                        <u:FileUploader
+                            id="uploader"
+                            sameFilenameAllowed="true"
+                            iconOnly="false"
+                            iconFirst="true"
+                            buttonText="Browse"
+                            style="Emphasized"
+                            change="onFileBrowser"
+                        />
+                        <Button
+                            id="uploadButton"
+                            text="{i18n>uploadButton}"
+                            press="onUpload"
+                        />
+                    </layout:HorizontalLayout>
+                </f:DynamicPageHeader>
+            </f:header>
+
+            <!-- DynamicPage Content -->
+            <f:content>
+                <Table
+                    id="previewTable"
+                    sticky="HeaderToolbar,ColumnHeaders"
+                    inset="false"
+                    class="sapFDynamicPageAlignContent"
+                    width="auto"
+                    items="{/Files}"
+                >
+                    <columns>
+                        <Column>
+                            <Text text="{i18n>id}" />
+                        </Column>
+                        <Column>
+                            <Text text="{i18n>fileName}" />
+                        </Column>
+                        <Column>
+                            <Text text="{i18n>mediaType}" />
+                        </Column>
+                        <Column>
+                            <Text text="{i18n>size}" />
+                        </Column>
+                    </columns>
+                    <items>
+                        <ColumnListItem>
+                            <cells>
+                                <Text text="{ID}" />
+                            </cells>
+                            <cells>
+                                <Link text="{fileName}" href="{url}" target="_blank" />
+                            </cells>
+                            <cells>
+                                <Text text="{mediaType}" />
+                            </cells>
+                            <cells>
+                                <Text text="{size}" />
+                            </cells>
+                        </ColumnListItem>
+                    </items>
+                </Table>
+            </f:content>
+
+            <!-- DynamicPage Footer -->
+            <f:footer />
+        </f:DynamicPage>
+    </App>
+</mvc:View>
